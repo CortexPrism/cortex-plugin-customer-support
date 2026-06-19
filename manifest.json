@@ -1,0 +1,266 @@
+{
+  "name": "cortex-plugin-customer-support",
+  "version": "1.0.0",
+  "description": "Customer Support Automation Suite — Zendesk, Freshdesk, Intercom, Help Scout, and Zoho Desk integration for ticket triage, AI-drafted responses, duplicate detection, and trending issue analysis",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-customer-support",
+  "homepage": "https://cortexprism.io/marketplace/plugins/customer-support",
+  "capabilities": ["tools", "network:fetch"],
+  "tools": [
+    {
+      "name": "support_list_tickets",
+      "description": "List support tickets with filters for status, priority, assignee, date range, and platform",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Ticket status",
+          "required": false,
+          "enum": ["new", "open", "pending", "solved", "closed", "all"]
+        },
+        {
+          "name": "priority",
+          "type": "string",
+          "description": "Ticket priority",
+          "required": false,
+          "enum": ["low", "normal", "high", "urgent", "all"]
+        },
+        {
+          "name": "assignee",
+          "type": "string",
+          "description": "Filter by assignee email",
+          "required": false
+        },
+        {
+          "name": "search",
+          "type": "string",
+          "description": "Search ticket subject or description",
+          "required": false
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "description": "Max results (default: 25)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "support_get_ticket",
+      "description": "Get full ticket details including conversation history, attachments, custom fields, and related tickets",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        { "name": "ticket_id", "type": "string", "description": "Ticket ID", "required": true },
+        {
+          "name": "include_conversations",
+          "type": "boolean",
+          "description": "Include full conversation history",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "support_draft_response",
+      "description": "Generate an AI-drafted response to a ticket using knowledge base articles, past resolutions, and tone matching",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        {
+          "name": "ticket_id",
+          "type": "string",
+          "description": "Ticket ID to respond to",
+          "required": true
+        },
+        {
+          "name": "tone",
+          "type": "string",
+          "description": "Response tone",
+          "required": false,
+          "enum": ["professional", "friendly", "technical", "empathetic"]
+        },
+        {
+          "name": "include_kb_links",
+          "type": "boolean",
+          "description": "Include relevant knowledge base article links",
+          "required": false
+        },
+        {
+          "name": "custom_instructions",
+          "type": "string",
+          "description": "Custom instructions for the response",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "support_update_ticket",
+      "description": "Update ticket status, priority, assignee, add internal notes, or apply tags/macros",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        { "name": "ticket_id", "type": "string", "description": "Ticket ID", "required": true },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "New status",
+          "required": false,
+          "enum": ["open", "pending", "solved", "closed"]
+        },
+        {
+          "name": "priority",
+          "type": "string",
+          "description": "New priority",
+          "required": false,
+          "enum": ["low", "normal", "high", "urgent"]
+        },
+        {
+          "name": "assignee",
+          "type": "string",
+          "description": "Reassign to email",
+          "required": false
+        },
+        {
+          "name": "internal_note",
+          "type": "string",
+          "description": "Internal note (not visible to customer)",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "description": "Comma-separated tags to add",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "support_find_duplicates",
+      "description": "Detect duplicate or related tickets using semantic similarity on subjects and descriptions",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        {
+          "name": "ticket_id",
+          "type": "string",
+          "description": "Reference ticket ID to find duplicates of",
+          "required": true
+        },
+        {
+          "name": "threshold",
+          "type": "number",
+          "description": "Similarity threshold 0-1 (default: 0.7)",
+          "required": false
+        },
+        {
+          "name": "date_range_days",
+          "type": "number",
+          "description": "Look back N days for duplicates (default: 30)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "support_get_trending",
+      "description": "Identify trending issues, recurring problems, and support patterns across the ticket base",
+      "params": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "Support platform",
+          "required": true,
+          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "description": "Analysis period: 'today', 'this_week', 'this_month', 'last_week'",
+          "required": false
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "description": "Filter by ticket category/topic",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "dependencies": {},
+  "peerDependencies": { "cortex": ">=1.0.0" },
+  "ui": {
+    "settings": [
+      {
+        "section": "Zendesk",
+        "fields": [
+          {
+            "key": "zendeskSubdomain",
+            "label": "Zendesk Subdomain",
+            "type": "text",
+            "defaultValue": ""
+          },
+          { "key": "zendeskEmail", "label": "Agent Email", "type": "text", "defaultValue": "" },
+          { "key": "zendeskApiToken", "label": "API Token", "type": "secret", "defaultValue": "" }
+        ]
+      },
+      {
+        "section": "Freshdesk",
+        "fields": [
+          {
+            "key": "freshdeskDomain",
+            "label": "Freshdesk Domain",
+            "type": "text",
+            "defaultValue": ""
+          },
+          { "key": "freshdeskApiKey", "label": "API Key", "type": "secret", "defaultValue": "" }
+        ]
+      },
+      {
+        "section": "Intercom",
+        "fields": [
+          {
+            "key": "intercomAccessToken",
+            "label": "Access Token",
+            "type": "secret",
+            "defaultValue": ""
+          }
+        ]
+      }
+    ]
+  },
+  "aiDisclosure": {
+    "tools": ["Kilo (DeepSeek) — scaffold and implementation"],
+    "humanReview": true
+  }
+}
