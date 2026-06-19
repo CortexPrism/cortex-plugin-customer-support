@@ -1,6 +1,8 @@
 # Customer Support Automation Suite
 
-Multi-platform support plugin for CortexPrism — Zendesk, Freshdesk, Intercom, Help Scout, and Zoho Desk integration for ticket triage, AI-drafted responses, duplicate detection, and trending analysis.
+Multi-platform support plugin for CortexPrism — Zendesk, Freshdesk, Intercom, Help Scout, and Zoho
+Desk integration for ticket triage, AI-drafted responses, duplicate detection, and trending
+analysis.
 
 ## Installation
 
@@ -10,14 +12,14 @@ cortex plugin install github:CortexPrism/cortex-plugin-customer-support
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `support_list_tickets` | List tickets with status, priority, and assignee filters |
-| `support_get_ticket` | Get full ticket details with conversation history |
-| `support_draft_response` | AI-drafted response using KB articles and past resolutions |
-| `support_update_ticket` | Update status, priority, assignee, add internal notes |
-| `support_find_duplicates` | Detect duplicate tickets via semantic similarity |
-| `support_get_trending` | Identify trending issues and recurring problems |
+| Tool                      | Description                                                |
+| ------------------------- | ---------------------------------------------------------- |
+| `support_list_tickets`    | List tickets with status, priority, and assignee filters   |
+| `support_get_ticket`      | Get full ticket details with conversation history          |
+| `support_draft_response`  | AI-drafted response using KB articles and past resolutions |
+| `support_update_ticket`   | Update status, priority, assignee, add internal notes      |
+| `support_find_duplicates` | Detect duplicate tickets via semantic similarity           |
+| `support_get_trending`    | Identify trending issues and recurring problems            |
 
 ## Configuration
 
