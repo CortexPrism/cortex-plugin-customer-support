@@ -1,7 +1,7 @@
 {
   "name": "cortex-plugin-customer-support",
-  "version": "1.0.0",
-  "description": "Customer Support Automation Suite — Zendesk, Freshdesk, Intercom, Help Scout, and Zoho Desk integration for ticket triage, AI-drafted responses, duplicate detection, and trending issue analysis",
+  "version": "1.0.1",
+  "description": "Customer Support Automation Suite \u2014 Zendesk, Freshdesk, Intercom, Help Scout, and Zoho Desk integration for ticket triage, AI-drafted responses, duplicate detection, and trending issue analysis",
   "kind": "esm",
   "entryPoint": "mod.ts",
   "runtime": "deno",
@@ -9,7 +9,10 @@
   "license": "MIT",
   "repository": "https://github.com/CortexPrism/cortex-plugin-customer-support",
   "homepage": "https://cortexprism.io/marketplace/plugins/customer-support",
-  "capabilities": ["tools", "network:fetch"],
+  "capabilities": [
+    "tools",
+    "network:fetch"
+  ],
   "tools": [
     {
       "name": "support_list_tickets",
@@ -20,21 +23,40 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
         {
           "name": "status",
           "type": "string",
           "description": "Ticket status",
           "required": false,
-          "enum": ["new", "open", "pending", "solved", "closed", "all"]
+          "enum": [
+            "new",
+            "open",
+            "pending",
+            "solved",
+            "closed",
+            "all"
+          ]
         },
         {
           "name": "priority",
           "type": "string",
           "description": "Ticket priority",
           "required": false,
-          "enum": ["low", "normal", "high", "urgent", "all"]
+          "enum": [
+            "low",
+            "normal",
+            "high",
+            "urgent",
+            "all"
+          ]
         },
         {
           "name": "assignee",
@@ -65,9 +87,20 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
-        { "name": "ticket_id", "type": "string", "description": "Ticket ID", "required": true },
+        {
+          "name": "ticket_id",
+          "type": "string",
+          "description": "Ticket ID",
+          "required": true
+        },
         {
           "name": "include_conversations",
           "type": "boolean",
@@ -85,7 +118,13 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
         {
           "name": "ticket_id",
@@ -98,7 +137,12 @@
           "type": "string",
           "description": "Response tone",
           "required": false,
-          "enum": ["professional", "friendly", "technical", "empathetic"]
+          "enum": [
+            "professional",
+            "friendly",
+            "technical",
+            "empathetic"
+          ]
         },
         {
           "name": "include_kb_links",
@@ -123,22 +167,43 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
-        { "name": "ticket_id", "type": "string", "description": "Ticket ID", "required": true },
+        {
+          "name": "ticket_id",
+          "type": "string",
+          "description": "Ticket ID",
+          "required": true
+        },
         {
           "name": "status",
           "type": "string",
           "description": "New status",
           "required": false,
-          "enum": ["open", "pending", "solved", "closed"]
+          "enum": [
+            "open",
+            "pending",
+            "solved",
+            "closed"
+          ]
         },
         {
           "name": "priority",
           "type": "string",
           "description": "New priority",
           "required": false,
-          "enum": ["low", "normal", "high", "urgent"]
+          "enum": [
+            "low",
+            "normal",
+            "high",
+            "urgent"
+          ]
         },
         {
           "name": "assignee",
@@ -169,7 +234,13 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
         {
           "name": "ticket_id",
@@ -200,7 +271,13 @@
           "type": "string",
           "description": "Support platform",
           "required": true,
-          "enum": ["zendesk", "freshdesk", "intercom", "helpscout", "zohodesk"]
+          "enum": [
+            "zendesk",
+            "freshdesk",
+            "intercom",
+            "helpscout",
+            "zohodesk"
+          ]
         },
         {
           "name": "period",
@@ -218,7 +295,9 @@
     }
   ],
   "dependencies": {},
-  "peerDependencies": { "cortex": ">=1.0.0" },
+  "peerDependencies": {
+    "cortex": ">=0.51.0"
+  },
   "ui": {
     "settings": [
       {
@@ -230,8 +309,18 @@
             "type": "text",
             "defaultValue": ""
           },
-          { "key": "zendeskEmail", "label": "Agent Email", "type": "text", "defaultValue": "" },
-          { "key": "zendeskApiToken", "label": "API Token", "type": "secret", "defaultValue": "" }
+          {
+            "key": "zendeskEmail",
+            "label": "Agent Email",
+            "type": "text",
+            "defaultValue": ""
+          },
+          {
+            "key": "zendeskApiToken",
+            "label": "API Token",
+            "type": "secret",
+            "defaultValue": ""
+          }
         ]
       },
       {
@@ -243,7 +332,12 @@
             "type": "text",
             "defaultValue": ""
           },
-          { "key": "freshdeskApiKey", "label": "API Key", "type": "secret", "defaultValue": "" }
+          {
+            "key": "freshdeskApiKey",
+            "label": "API Key",
+            "type": "secret",
+            "defaultValue": ""
+          }
         ]
       },
       {
@@ -260,7 +354,9 @@
     ]
   },
   "aiDisclosure": {
-    "tools": ["Kilo (DeepSeek) — scaffold and implementation"],
+    "tools": [
+      "Kilo (DeepSeek) \u2014 scaffold and implementation"
+    ],
     "humanReview": true
   }
 }

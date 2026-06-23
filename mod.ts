@@ -8,11 +8,11 @@
  * Plugin #306 from plugin-ideas.md
  */
 
-import type { PluginContext, Tool, ToolResult } from 'cortex/plugins';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
 const PLATFORMS = ['zendesk', 'freshdesk', 'intercom', 'helpscout', 'zohodesk'] as const;
 
-function check(p: string): ToolResult | null {
+function check(p: string): ToolCallResult | null {
   if (!PLATFORMS.includes(p as typeof PLATFORMS[number])) {
     return {
       toolName: '',
@@ -64,7 +64,7 @@ const listTickets: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
@@ -149,7 +149,7 @@ const getTicket: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
@@ -239,7 +239,7 @@ const draftResponse: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
@@ -319,7 +319,7 @@ const updateTicket: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
@@ -398,7 +398,7 @@ const findDupes: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
@@ -470,7 +470,7 @@ const getTrending: Tool = {
     ],
     capabilities: ['network:fetch'],
   },
-  execute: async (args, ctx): Promise<ToolResult> => {
+  execute: async (args, ctx): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const err = check(args.platform as string);
